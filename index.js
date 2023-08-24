@@ -4,7 +4,9 @@ var session = require("express-session");
 require("./auth");
 
 const app = express();
-app.use(session({ secret: "secretCode" }));
+app.use(
+  session({ secret: "secretCode", resave: false, saveUninitialized: true })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
