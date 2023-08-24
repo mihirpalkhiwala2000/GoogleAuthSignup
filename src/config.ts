@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-export const env = {
+const env = {
   Google: {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -9,4 +9,8 @@ export const env = {
   Server: {
     port: process.env.PORT,
   },
+  Session: {
+    secretCode: process.env.SECRET_CODE,
+  },
 };
+export default env;

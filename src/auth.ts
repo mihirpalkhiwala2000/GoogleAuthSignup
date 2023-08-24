@@ -1,6 +1,6 @@
 import * as passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth2";
-import { env } from "./config";
+import env from "./config";
 import { url } from "./constant";
 
 passport.use(
@@ -15,17 +15,17 @@ passport.use(
       request: Express.Request,
       accessToken: string,
       refreshToken: string,
-      profile: any,
-      done: any
+      profile: passport.Profile,
+      done: Function
     ) => {
       return done(null, profile);
     }
   )
 );
 
-passport.serializeUser((user, done) => {
+passport.serializeUser((user: Express.User, done) => {
   done(null, user);
 });
-passport.deserializeUser((user: any, done) => {
+passport.deserializeUser((user: Express.User, done) => {
   done(null, user);
 });

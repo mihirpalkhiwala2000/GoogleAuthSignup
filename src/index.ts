@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as passport from "passport";
 import * as session from "express-session";
-import { env } from "./config";
+import env from "./config";
 import { messages } from "./constant";
 import router from "./routes";
 import("./auth");
@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   session({
-    secret: process.env.SECRET_CODE as string,
+    secret: env.Session.secretCode as string,
     resave: false,
     saveUninitialized: true,
   })
