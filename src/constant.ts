@@ -7,4 +7,5 @@ export const messages = {
   logout: "You are successfully logged out, GoodBye!",
   failed: "Something went wrong, please try again",
   hello: "Hello, How are you",
+  autoLogout: "Please login again",
 };

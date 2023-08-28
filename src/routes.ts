@@ -2,6 +2,7 @@ import * as express from "express";
 import * as passport from "passport";
 import { messages } from "./constant";
 import { isLoggedIn } from "./middleware";
+import * as cron from "node-cron";
 
 const router = express.Router();
 
@@ -28,6 +29,11 @@ router.get("/auth/failure", (req, res) => {
 
 router.get("/protected", isLoggedIn, (req, res) => {
   if (req.user) {
+    const task = cron.schedule("*/15 * * * *", () => {
+      req.session.destroy(() => {});
+      task.stop();
+      console.log(messages.autoLogout);
+    });
     const name = req.user?.displayName;
     res.send(messages.hello + ` ${name}`);
   }
